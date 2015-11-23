@@ -46,6 +46,14 @@
             android:name=".GeneralActivity"
             android:label="@string/title_activity_general" >
         </activity>
+        <activity
+            android:name=".NuSportenActivity"
+            android:label="@string/title_activity_nu_sporten" >
+        </activity>
+        <activity
+            android:name=".LaterSportenActivity"
+            android:label="@string/title_activity_later_sporten" >
+        </activity>
     </application>
 
 </manifest>

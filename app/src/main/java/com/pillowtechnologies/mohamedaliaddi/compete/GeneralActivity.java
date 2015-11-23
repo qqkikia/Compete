@@ -6,12 +6,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
@@ -28,6 +33,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class GeneralActivity extends AppCompatActivity {
+    String[] drawerlist;
+    DrawerLayout drawerLayout;
+    ListView listView;
     Drawable d;
     Profile profile;
 
@@ -37,7 +45,14 @@ public class GeneralActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_general);
         profile = Profile.getCurrentProfile();
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        listView = (ListView)findViewById(R.id.left_drawer);
+        drawerlist = new String[2];
+        drawerlist[0] = "nu sporten";
+        drawerlist[1] = "later sporten";
 
+        listView.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_item, drawerlist));
 
 
         new GraphRequest(
@@ -107,5 +122,20 @@ public class GeneralActivity extends AppCompatActivity {
 
 
 
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
 
-}
+    private void selectItem(int pos) {
+        if(pos== 0){
+
+        }
+        if(pos== 1){
+
+        }
+    }
+    }
+
