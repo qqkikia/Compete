@@ -1,9 +1,11 @@
 package com.pillowtechnologies.mohamedaliaddi.compete;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class NuSportenActivity extends AppCompatActivity {
 
@@ -33,5 +35,10 @@ public class NuSportenActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void Done(View view){
+        Intent intent = new Intent(this,GeneralActivity.class);
+        startActivity(intent);
     }
 }

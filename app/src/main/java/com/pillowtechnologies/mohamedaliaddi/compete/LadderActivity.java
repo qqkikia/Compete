@@ -1,24 +1,22 @@
 package com.pillowtechnologies.mohamedaliaddi.compete;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-public class LaterSportenActivity extends AppCompatActivity {
+public class LadderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_later_sporten);
+        setContentView(R.layout.activity_ladder);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_later_sporten, menu);
+        getMenuInflater().inflate(R.menu.menu_ladder, menu);
         return true;
     }
 
@@ -35,10 +33,5 @@ public class LaterSportenActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void Done(View view){
-        Intent intent = new Intent(this,GeneralActivity.class);
-        startActivity(intent);
     }
 }

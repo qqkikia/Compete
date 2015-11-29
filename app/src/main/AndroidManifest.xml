@@ -54,6 +54,22 @@
             android:name=".LaterSportenActivity"
             android:label="@string/title_activity_later_sporten" >
         </activity>
+        <activity
+            android:name=".PlannedActivity"
+            android:label="@string/title_activity_planned" >
+        </activity>
+        <activity
+            android:name=".LadderActivity"
+            android:label="@string/title_activity_ladder" >
+        </activity>
+        <activity
+            android:name=".CurrentActivity"
+            android:label="@string/title_activity_current" >
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
     </application>
 
 </manifest>

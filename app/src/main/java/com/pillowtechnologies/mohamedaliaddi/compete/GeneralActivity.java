@@ -53,7 +53,7 @@ public class GeneralActivity extends AppCompatActivity {
 
         listView.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_item, drawerlist));
-
+        listView.setOnItemClickListener(new DrawerItemClickListener());
 
         new GraphRequest(
                 AccessToken.getCurrentAccessToken(),
@@ -131,11 +131,28 @@ public class GeneralActivity extends AppCompatActivity {
 
     private void selectItem(int pos) {
         if(pos== 0){
-
+            Intent intent = new Intent(getApplicationContext(),NuSportenActivity.class);
+            startActivity(intent);
         }
         if(pos== 1){
-
+            Intent intent = new Intent(getApplicationContext(),LaterSportenActivity.class);
+            startActivity(intent);
         }
+    }
+
+    public void toPlanned(View view){
+        Intent intent = new Intent(getApplicationContext(),PlannedActivity.class);
+        startActivity(intent);
+    }
+
+    public void toLadder(View view){
+        Intent intent = new Intent(getApplicationContext(),LadderActivity.class);
+        startActivity(intent);
+    }
+
+    public void toCurrent(View view){
+        Intent intent = new Intent(getApplicationContext(),CurrentActivity.class);
+        startActivity(intent);
     }
     }
 

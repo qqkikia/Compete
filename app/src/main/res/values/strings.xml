@@ -18,4 +18,11 @@
     <string name="action_example">Example action</string>
     <string name="title_activity_nu_sporten">NuSportenActivity</string>
     <string name="title_activity_later_sporten">LaterSportenActivity</string>
+    <string name="title_activity_planned">PlannedActivity</string>
+    <string name="title_activity_ladder">LadderActivity</string>
+    <string name="title_activity_current">CurrentActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
