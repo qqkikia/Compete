@@ -6,6 +6,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +48,8 @@ public class GeneralActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_general);
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         profile = Profile.getCurrentProfile();
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         listView = (ListView)findViewById(R.id.left_drawer);
@@ -66,8 +72,7 @@ public class GeneralActivity extends AppCompatActivity {
                     }
                 }
         ).executeAsync();
-        ImageView profilepic = (ImageView) findViewById(R.id.profilepic);
-        profilepic.setImageDrawable(d);
+
     }
 
     @Override
@@ -140,19 +145,29 @@ public class GeneralActivity extends AppCompatActivity {
         }
     }
 
-    public void toPlanned(View view){
-        Intent intent = new Intent(getApplicationContext(),PlannedActivity.class);
-        startActivity(intent);
+
+
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int pos) {
+            switch(pos) {
+
+                case 0: return GeneralFragment.newInstance();
+                case 1: return ChatFragment.newInstance();
+                default: return GeneralFragment.newInstance();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
     }
 
-    public void toLadder(View view){
-        Intent intent = new Intent(getApplicationContext(),LadderActivity.class);
-        startActivity(intent);
-    }
-
-    public void toCurrent(View view){
-        Intent intent = new Intent(getApplicationContext(),CurrentActivity.class);
-        startActivity(intent);
-    }
     }
 
