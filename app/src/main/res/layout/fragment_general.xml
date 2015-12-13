@@ -24,8 +24,7 @@
             android:onClick="toCurrent"
             android:id="@+id/button"
             android:layout_alignBottom="@+id/frameLayout"
-            android:layout_toRightOf="@+id/profilepic"
-            android:layout_toEndOf="@+id/profilepic" />
+           />
 
         <Button
             android:layout_width="wrap_content"
