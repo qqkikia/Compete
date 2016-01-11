@@ -15,14 +15,17 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SignUpActivity extends AppCompatActivity {
 CallbackManager callbackManager;
+    ArrayList<String> perms = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        perms.add("public_profile");
+
         setContentView(R.layout.activity_sign_up);
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager,new FacebookCallback<LoginResult>() {
@@ -67,7 +70,7 @@ CallbackManager callbackManager;
     }
 
     public void Login(View view){
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+        LoginManager.getInstance().logInWithReadPermissions(this, perms);
 
     }
 

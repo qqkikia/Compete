@@ -3,8 +3,10 @@
     package="com.pillowtechnologies.mohamedaliaddi.compete" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -46,7 +48,9 @@
 
         <activity
             android:name=".GeneralActivity"
-            android:label="@string/title_activity_general" >
+            android:label="@string/title_activity_general"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
         </activity>
         <activity
             android:name=".NuSportenActivity"
@@ -73,6 +77,19 @@
         <activity
             android:name=".ProfileActivity"
             android:label="@string/title_activity_profile" >
+        </activity>
+        <activity
+            android:name=".PlanActivity"
+            android:label="@string/title_activity_plan" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDax-4DpoNnP8ZA8L8lLPkaSouvfhfOJEo" />
+
+        <activity
+            android:name=".EventActivity"
+            android:label="@string/title_activity_event" >
         </activity>
     </application>
 

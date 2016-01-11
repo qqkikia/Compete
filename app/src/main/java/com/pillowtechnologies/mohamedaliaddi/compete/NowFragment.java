@@ -5,36 +5,29 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-
-import com.facebook.Profile;
-
-import java.util.ArrayList;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ProfileFragment extends Fragment {
+public class NowFragment extends Fragment {
 
-    public ProfileFragment() {
+    public NowFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.fragment_now, container, false);
     }
 
-    public static ProfileFragment newInstance() {
+    public static NowFragment newInstance(String text) {
 
-        ProfileFragment p = new ProfileFragment();
+        NowFragment n = new NowFragment();
+        Bundle b = new Bundle();
+        b.putString("msg", text);
 
+        n.setArguments(b);
 
-
-
-        return p;
+        return n;
     }
 }

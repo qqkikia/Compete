@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.pillowtechnologies.mohamedaliaddi.compete"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile 'com.viewpagerindicator:library:2.4.1@aar'
     compile 'com.facebook.android:facebook-android-sdk:4.7.0'
+    compile 'com.google.android.gms:play-services:8.4.0'
 }

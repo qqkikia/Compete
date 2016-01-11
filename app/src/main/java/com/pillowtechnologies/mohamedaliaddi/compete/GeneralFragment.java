@@ -35,18 +35,5 @@ public class GeneralFragment extends Fragment {
         return g;
     }
 
-    public void toPlanned(View view){
-        Intent intent = new Intent(getActivity(),PlannedActivity.class);
-        startActivity(intent);
-    }
 
-    public void toLadder(View view){
-        Intent intent = new Intent(getActivity(),LadderActivity.class);
-        startActivity(intent);
-    }
-
-    public void toCurrent(View view){
-        Intent intent = new Intent(getActivity(),CurrentActivity.class);
-        startActivity(intent);
-    }
 }

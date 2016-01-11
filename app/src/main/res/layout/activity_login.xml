@@ -40,13 +40,6 @@
             android:text="log in"
             android:id="@+id/login"
             android:onClick="Login"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="sign up"
-            android:id="@+id/signup"
-            android:onClick="toSignUp"/>
     </LinearLayout>
 </LinearLayout>
 

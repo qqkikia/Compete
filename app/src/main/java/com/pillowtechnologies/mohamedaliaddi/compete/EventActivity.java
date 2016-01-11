@@ -1,45 +1,28 @@
 package com.pillowtechnologies.mohamedaliaddi.compete;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.facebook.AccessToken;
-import com.facebook.FacebookSdk;
-import com.facebook.Profile;
-
-public class MainActivity extends AppCompatActivity {
-Intent intent;
+public class EventActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        if(AccessToken.getCurrentAccessToken() == null && Profile.getCurrentProfile() == null){
-            Toast.makeText(this, "logged out", Toast.LENGTH_SHORT).show();
-        }
-        setContentView(R.layout.activity_main);
-        intent = new Intent(this, LoginActivity.class);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(intent);
-                finish();
-            }
-        }, 2000);
+        setContentView(R.layout.activity_event);
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("title");
+        TextView tv = (TextView) findViewById(R.id.titletext);
+        tv.setText(title);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_event, menu);
         return true;
     }
 

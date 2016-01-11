@@ -1,6 +1,8 @@
 package com.pillowtechnologies.mohamedaliaddi.compete;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,9 +13,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
@@ -29,12 +34,15 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
+import com.facebook.login.widget.ProfilePictureView;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class GeneralActivity extends AppCompatActivity {
     String[] drawerlist;
@@ -42,20 +50,47 @@ public class GeneralActivity extends AppCompatActivity {
     ListView listView;
     Drawable d;
     Profile profile;
+    ListView list;
+    CustomAdapter adapter;
+    GeneralActivity CustomListView = null;
+    ArrayList<Event> currevents = new ArrayList<Event>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        if (AccessToken.getCurrentAccessToken() != null && Profile.getCurrentProfile() != null) {
+            Toast.makeText(this, "logged in", Toast.LENGTH_SHORT).show();
+        }
         setContentView(R.layout.activity_general);
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        list= ( ListView )findViewById( R.id.list );
+        CustomListView = this;
+        setListData();
+        Resources res =getResources();
+        adapter=new CustomAdapter( CustomListView, currevents,res);
+        list.setAdapter(adapter);
+        ProfilePictureView pf = (ProfilePictureView) findViewById(R.id.profilepic);
+        
+
         profile = Profile.getCurrentProfile();
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        listView = (ListView)findViewById(R.id.left_drawer);
-        drawerlist = new String[2];
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        listView = (ListView) findViewById(R.id.left_drawer);
+        drawerlist = new String[3];
         drawerlist[0] = "nu sporten";
         drawerlist[1] = "later sporten";
+        drawerlist[2] = "log out";
+        CustomListView.
+
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Event temp = currevents.get(position);
+                String title = temp.getTitle();
+                Intent i = new Intent(getApplicationContext(), EventActivity.class);
+                i.putExtra("title", title);
+
+                startActivity(i);
+            }
+        });
 
         listView.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_item, drawerlist));
@@ -96,10 +131,11 @@ public class GeneralActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     public Bitmap getPhotoFacebook(final String id) {
 
-        Bitmap bitmap=null;
-        final String nomimg = "https://graph.facebook.com/"+id+"/picture?type=large";
+        Bitmap bitmap = null;
+        final String nomimg = "https://graph.facebook.com/" + id + "/picture?type=large";
         URL imageURL = null;
 
         try {
@@ -111,7 +147,7 @@ public class GeneralActivity extends AppCompatActivity {
         try {
             HttpURLConnection connection = (HttpURLConnection) imageURL.openConnection();
             connection.setDoInput(true);
-            connection.setInstanceFollowRedirects( true );
+            connection.setInstanceFollowRedirects(true);
             connection.connect();
             InputStream inputStream = connection.getInputStream();
 
@@ -126,48 +162,80 @@ public class GeneralActivity extends AppCompatActivity {
     }
 
 
-
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             selectItem(position);
+
         }
     }
 
     private void selectItem(int pos) {
-        if(pos== 0){
-            Intent intent = new Intent(getApplicationContext(),NuSportenActivity.class);
+        if (pos == 0) {
+            Intent intent = new Intent(getApplicationContext(), NuSportenActivity.class);
             startActivity(intent);
         }
-        if(pos== 1){
-            Intent intent = new Intent(getApplicationContext(),LaterSportenActivity.class);
+        if (pos == 1) {
+            Intent intent = new Intent(getApplicationContext(), LaterSportenActivity.class);
             startActivity(intent);
         }
-    }
+        if (pos == 2) {
+            LoginManager.getInstance().logOut();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
 
-
-
-    private class MyPagerAdapter extends FragmentPagerAdapter {
-
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int pos) {
-            switch(pos) {
-
-                case 0: return GeneralFragment.newInstance();
-                case 1: return ChatFragment.newInstance();
-                default: return GeneralFragment.newInstance();
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 2;
         }
     }
 
+
+    public void toProfile(View view) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
+
+    public void toPlan(View view) {
+        Intent intent = new Intent(this, PlanActivity.class);
+        startActivity(intent);
+    }
+
+    public void toLadder(View view) {
+        Intent intent = new Intent(this, LadderActivity.class);
+        startActivity(intent);
+    }
+
+    public void toCurrent(View view) {
+        Intent intent = new Intent(this, CurrentActivity.class);
+        startActivity(intent);
+    }
+
+    public void hamburgerslide(View view) {
+
+        drawerLayout.openDrawer(Gravity.LEFT);
+
+    }
+
+
+    public void setListData()
+    {
+        Event e1 = new Event();
+        e1.setTitle("Event 1");
+        Event e2 = new Event();
+        e2.setTitle("Event 2");
+        Event e3 = new Event();
+        e3.setTitle("Event 3");
+        Event e4 = new Event();
+        e4.setTitle("Event 4");
+        Event e5 = new Event();
+        e5.setTitle("Event 5");
+        currevents.add(e1);
+        currevents.add(e2);
+        currevents.add(e3);
+        currevents.add(e4);
+        currevents.add(e5);
+
+
+
+    }
+
+}
 

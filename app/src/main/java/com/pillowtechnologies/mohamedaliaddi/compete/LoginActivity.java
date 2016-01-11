@@ -1,6 +1,8 @@
 package com.pillowtechnologies.mohamedaliaddi.compete;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -12,11 +14,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -27,12 +33,18 @@ import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
+
     CallbackManager callbackManager;
+    ArrayList<String> perms = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        perms.add("public_profile");
+        if(AccessToken.getCurrentAccessToken() != null && Profile.getCurrentProfile() != null){
+
+        }
         setContentView(R.layout.activity_login);
+
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -54,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         CirclePageIndicator cp = (CirclePageIndicator)findViewById(R.id.indicator);
         cp.setViewPager(pager);
+
+
 
     }
 
@@ -117,10 +131,14 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void Login(View view){
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+
         toGeneral();
 
     }
+
+
+
+
 }
 
 
