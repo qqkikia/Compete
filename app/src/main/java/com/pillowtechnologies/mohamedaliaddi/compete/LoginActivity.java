@@ -1,35 +1,26 @@
 package com.pillowtechnologies.mohamedaliaddi.compete;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-
-
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -134,6 +125,11 @@ public class LoginActivity extends AppCompatActivity {
 
         toGeneral();
 
+    }
+
+    public void toChatLogin(View view){
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
     }
 
 
