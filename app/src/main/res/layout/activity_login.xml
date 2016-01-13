@@ -40,6 +40,11 @@
             android:text="log in"
             android:id="@+id/login"
             android:onClick="Login"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chat login"
+            android:onClick="toChatLogin"/>
     </LinearLayout>
 </LinearLayout>
 
