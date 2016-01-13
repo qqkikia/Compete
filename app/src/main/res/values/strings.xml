@@ -27,4 +27,28 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_plan">PlanActivity</string>
     <string name="title_activity_event">EventActivity</string>
+
+
+    <string name="or">or</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="log_in">Log in</string>
+    <string name="forgot_my_pwd">I have forgotten my password?</string>
+    <string name="my_chats">My Chats</string>
+    <string name="all_chats">All Chats</string>
+    <string name="search">Search</string>
+    <string name="to">To</string>
+    <string name="edit">edit</string>
+    <string name="new_chat">New Chat</string>
+    <string name="alert_wait">Please wait...</string>
+    <string name="err_fields_empty">Please fill all the fields</string>
+    <string name="err_singup"><Err></Err>or occurred while signing up</string>
+    <string name="err_login">Error occurred while logging in</string>
+    <string name="err_users">Error occurred while finding users</string>
+
+    <string name="alert_loading">Loading...</string>
+    <string name="msg_no_user_found">No users found for chat</string>
+
 </resources>
