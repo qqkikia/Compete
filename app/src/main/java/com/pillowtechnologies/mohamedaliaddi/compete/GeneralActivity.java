@@ -69,32 +69,10 @@ public class GeneralActivity extends AppCompatActivity {
         adapter=new CustomAdapter( CustomListView, currevents,res);
         list.setAdapter(adapter);
         ProfilePictureView pf = (ProfilePictureView) findViewById(R.id.profilepic);
-        
+
 
         profile = Profile.getCurrentProfile();
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        listView = (ListView) findViewById(R.id.left_drawer);
-        drawerlist = new String[3];
-        drawerlist[0] = "nu sporten";
-        drawerlist[1] = "later sporten";
-        drawerlist[2] = "log out";
-        CustomListView.
 
-                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Event temp = currevents.get(position);
-                String title = temp.getTitle();
-                Intent i = new Intent(getApplicationContext(), EventActivity.class);
-                i.putExtra("title", title);
-
-                startActivity(i);
-            }
-        });
-
-        listView.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_item, drawerlist));
-        listView.setOnItemClickListener(new DrawerItemClickListener());
 
         new GraphRequest(
                 AccessToken.getCurrentAccessToken(),
