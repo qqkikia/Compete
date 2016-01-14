@@ -18,7 +18,6 @@
             android:paddingTop="8dp"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/burger"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:clickable="true"
