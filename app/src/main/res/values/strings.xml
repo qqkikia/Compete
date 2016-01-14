@@ -23,6 +23,9 @@
     <string name="title_activity_current">CurrentActivity</string>
     <string name="title_activity_profile">ProfileActivity</string>
 
+    <string name="parse_app_id">8tXOWKPc3gjRIW4MdF0Md7Rc935bDn9Nxa8S1XYb</string>
+    <string name="parse_client_key">vDRj7x984WXSCzGsBpuLBDiCR4IhVJmPKycbFqpg</string>
+
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_plan">PlanActivity</string>

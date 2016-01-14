@@ -65,11 +65,7 @@
     android:clickable="true"
     android:onClick="toProfile">
 
-<com.facebook.login.widget.ProfilePictureView
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:id="@+id/profilepic"
-    android:layout_centerInParent="true"></com.facebook.login.widget.ProfilePictureView>
+
 
 
     <ImageView
