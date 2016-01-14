@@ -13,16 +13,16 @@ import android.view.View;
 import android.widget.TextView;
 
 public class LaterSportenActivity extends AppCompatActivity {
-String time;
+    String time;
     String date;
     Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_later_sporten);
-        TextView later = (TextView)findViewById(R.id.later);
+        TextView tx = (TextView)findViewById(R.id.txt);
         Typeface tf = Typeface.createFromAsset(getAssets(),"coolvetica.ttf");
-        later.setTypeface(tf);
+        tx.setTypeface(tf);
     }
 
     @Override
