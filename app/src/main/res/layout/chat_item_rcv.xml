@@ -18,23 +18,26 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/pad_5dp"
         android:paddingLeft="@dimen/pad_chat_item"
-        android:paddingTop="@dimen/pad_5dp" >
+        android:paddingTop="@dimen/pad_5dp"
+        >
 
         <TextView
             android:id="@+id/lbl1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textColor="@color/main_color_gray_dk"
-            android:textSize="@dimen/txt_13sp" />
+            android:textColor="@color/colorBackground"
+            android:textSize="@dimen/txt_13sp"
+            />
         <TextView
             android:id="@+id/lbl2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="text"
-            android:textColor="@color/main_color_gray_dk"
+            android:textColor="@color/colorBackground"
             android:textSize="@dimen/txt_14sp"
-            android:maxLines="4"/>
+            android:maxLines="4"
+            />
 
     </LinearLayout>
 
@@ -50,4 +53,5 @@
         android:layout_marginTop="@dimen/pad_5dp"
         android:layout_marginLeft="@dimen/pad_20dp"
         />
+
 </LinearLayout>
