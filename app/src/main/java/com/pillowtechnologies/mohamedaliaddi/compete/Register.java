@@ -25,6 +25,7 @@ import com.pillowtechnologies.mohamedaliaddi.compete.utils.Utils;
 public class Register extends CustomActivity
 {
 
+    int n;
     /** The username EditText. */
     private EditText user;
 
@@ -89,7 +90,7 @@ public class Register extends CustomActivity
                 if (e == null)
                 {
                     UserList.user = pu;
-                    startActivity(new Intent(Register.this, UserList.class));
+                    startActivity(new Intent(Register.this, GeneralActivity.class));
                     setResult(RESULT_OK);
                     finish();
                 }
