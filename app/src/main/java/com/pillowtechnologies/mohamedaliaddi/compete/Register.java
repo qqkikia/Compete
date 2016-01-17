@@ -89,7 +89,7 @@ public class Register extends CustomActivity
                 if (e == null)
                 {
                     UserList.user = pu;
-                    startActivity(new Intent(Register.this, UserList.class));
+                    startActivity(new Intent(Register.this, GeneralActivity.class));
                     setResult(RESULT_OK);
                     finish();
                 }

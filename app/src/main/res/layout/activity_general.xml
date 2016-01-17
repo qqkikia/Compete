@@ -91,6 +91,16 @@
                 android:text="SPORT NOW"
                 android:textColor="@color/colorAccent"
                 />
+            <Button
+                android:layout_marginTop="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="CHAT"
+                android:textColor="@color/colorAccent"
+                android:onClick="toUserlist"
+                />
 
         </RelativeLayout>
 

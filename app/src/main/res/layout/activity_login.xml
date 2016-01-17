@@ -44,7 +44,7 @@
             android:paddingLeft="10dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="log in"
+            android:text="Log in"
             android:textColor="@color/colorAccent"
             android:id="@+id/login"
             android:onClick="Login"
@@ -55,10 +55,11 @@
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="Chat login"
+            android:text="Register"
             android:textColor="@color/colorAccent"
-            android:onClick="toChatLogin"
+            android:onClick="Register"
             />
 
     </LinearLayout>

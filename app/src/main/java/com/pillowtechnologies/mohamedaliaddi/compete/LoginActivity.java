@@ -13,11 +13,7 @@ import android.view.View;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
 import com.facebook.Profile;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -37,22 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         callbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                toGeneral();
-            }
 
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         CirclePageIndicator cp = (CirclePageIndicator)findViewById(R.id.indicator);
@@ -117,18 +98,14 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void toGeneral(){
-        Intent intent = new Intent (this,GeneralActivity.class);
-        startActivity(intent);
-    }
+
     public void Login(View view){
 
-        toGeneral();
+        Intent intent = new Intent (this,Login.class);
+        startActivity(intent);    }
 
-    }
-
-    public void toChatLogin(View view){
-        Intent intent = new Intent(this,Login.class);
+    public void Register(View view){
+        Intent intent = new Intent(this,Register.class);
         startActivity(intent);
     }
 

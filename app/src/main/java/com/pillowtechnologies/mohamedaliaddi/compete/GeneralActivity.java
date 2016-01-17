@@ -168,6 +168,10 @@ public class GeneralActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CurrentActivity.class);
         startActivity(intent);
     }
+    public void toUserlist(View view){
+        Intent intent = new Intent(this, UserList.class);
+        startActivity(intent);
+    }
 
     public void hamburgerslide(View view) {
 
