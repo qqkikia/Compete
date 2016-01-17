@@ -1,12 +1,15 @@
 package com.pillowtechnologies.mohamedaliaddi.compete;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -36,6 +39,9 @@ import com.facebook.HttpMethod;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.ProfilePictureView;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +50,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class GeneralActivity extends AppCompatActivity {
+public class GeneralActivity extends AppCompatActivity implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     String[] drawerlist;
     DrawerLayout drawerLayout;
     ListView listView;
@@ -54,6 +61,8 @@ public class GeneralActivity extends AppCompatActivity {
     CustomAdapter adapter;
     GeneralActivity CustomListView = null;
     ArrayList<Event> currevents = new ArrayList<Event>();
+    GoogleApiClient mGoogleApiClient;
+    Location mLastLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,29 +71,19 @@ public class GeneralActivity extends AppCompatActivity {
             Toast.makeText(this, "logged in", Toast.LENGTH_SHORT).show();
         }
         setContentView(R.layout.activity_general);
-        list= ( ListView )findViewById( R.id.list );
+        list = (ListView) findViewById(R.id.list);
         CustomListView = this;
         setListData();
-        Resources res =getResources();
-        adapter=new CustomAdapter( CustomListView, currevents,res);
-        list.setAdapter(adapter);
-        ProfilePictureView pf = (ProfilePictureView) findViewById(R.id.profilepic);
+        Resources res = getResources();
+        adapter = new CustomAdapter(CustomListView, currevents, res);
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
 
-
-        profile = Profile.getCurrentProfile();
-
-
-        new GraphRequest(
-                AccessToken.getCurrentAccessToken(),
-                "/{user-id}/picture",
-                null,
-                HttpMethod.GET,
-                new GraphRequest.Callback() {
-                    public void onCompleted(GraphResponse response) {
-
-                    }
-                }
-        ).executeAsync();
 
     }
 
@@ -136,6 +135,24 @@ public class GeneralActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return bitmap;
+
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
 
@@ -215,5 +232,15 @@ public class GeneralActivity extends AppCompatActivity {
 
     }
 
-}
 
+
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+}

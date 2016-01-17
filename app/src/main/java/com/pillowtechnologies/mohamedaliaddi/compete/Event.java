@@ -1,6 +1,8 @@
 package com.pillowtechnologies.mohamedaliaddi.compete;
 
 import android.location.Location;
+import android.text.format.Time;
+
 import java.util.Date;
 
 /**
@@ -12,12 +14,23 @@ public class Event {
     private UserProfile player1;
     private UserProfile player2;
     private Date date;
-    public Event(String title, Location eventLocation, UserProfile player1, UserProfile player2, Date date) {
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    private Time time;
+    public Event(String title, Location eventLocation, UserProfile player1, UserProfile player2, Date date, Time time) {
         Title = title;
         EventLocation = eventLocation;
         this.player1 = player1;
         this.player2 = player2;
         this.date = date;
+        this.time = time;
     }
 public Event(){
 
@@ -67,4 +80,16 @@ public Event(){
     public void setEventLocation(Location eventLocation) {
         EventLocation = eventLocation;
     }
+
+    public String PushPreparation(){
+        String pushstr = this.getTitle().toString() + ""+"|" + this.getDate().toString() + "|" + this.getEventLocation().toString() + "|" + this.getPlayer1().toString() + "|" + this.getPlayer2().toString() + "|" + this.getTime().toString() + "|";
+        return pushstr;
+    }
+
+    public void EventFromString(String x){
+        String delims = "[|]";
+        String[] tokens = x.split(delims);
+        //Every element from push preparation added to this event
+    }
+
 }
