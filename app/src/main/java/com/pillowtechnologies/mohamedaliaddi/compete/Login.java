@@ -27,6 +27,8 @@ import com.pillowtechnologies.mohamedaliaddi.compete.utils.Utils;
 public class Login extends CustomActivity
 {
 
+    int n;
+
     /** The username edittext. */
     private EditText user;
 

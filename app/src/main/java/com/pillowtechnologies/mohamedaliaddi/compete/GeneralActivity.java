@@ -31,6 +31,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class GeneralActivity extends AppCompatActivity {
+
+    int n;
     String[] drawerlist;
     DrawerLayout drawerLayout;
     ListView listView;

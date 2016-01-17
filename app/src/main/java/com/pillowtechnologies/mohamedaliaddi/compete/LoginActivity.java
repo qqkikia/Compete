@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
+    int n;
     CallbackManager callbackManager;
     ArrayList<String> perms = new ArrayList<>();
     @Override

@@ -31,6 +31,7 @@ import java.util.List;
 public class UserList extends CustomActivity
 {
 
+    int n;
     /** The Chat list. */
     private ArrayList<ParseUser> uList;
 

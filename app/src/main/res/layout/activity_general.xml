@@ -96,7 +96,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
-                android:text="CHAT"
+                android:text="Chat"
                 android:textColor="@color/colorAccent"
                 android:onClick="toUserlist"
                 />

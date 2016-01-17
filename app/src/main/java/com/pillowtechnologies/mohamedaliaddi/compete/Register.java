@@ -25,6 +25,7 @@ import com.pillowtechnologies.mohamedaliaddi.compete.utils.Utils;
 public class Register extends CustomActivity
 {
 
+    int n;
     /** The username EditText. */
     private EditText user;
 

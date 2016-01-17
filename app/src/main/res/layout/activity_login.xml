@@ -57,7 +57,7 @@
             android:paddingLeft="10dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="Register"
+            android:text="register"
             android:textColor="@color/colorAccent"
             android:onClick="Register"
             />
