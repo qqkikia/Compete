@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -73,6 +74,7 @@ public class Login extends CustomActivity
                     getString(R.string.alert_wait));
             ParseObject.registerSubclass(ParseUser.class);
             ParseUser.enableAutomaticUser();
+            Parse.initialize(this, "8tXOWKPc3gjRIW4MdF0Md7Rc935bDn9Nxa8S1XYb", "vDRj7x984WXSCzGsBpuLBDiCR4IhVJmPKycbFqpg");
             ParseACL defaultACL = new ParseACL();
             ParseACL.setDefaultACL(defaultACL, true);
             ParseUser.logInInBackground(u, p, new LogInCallback() {

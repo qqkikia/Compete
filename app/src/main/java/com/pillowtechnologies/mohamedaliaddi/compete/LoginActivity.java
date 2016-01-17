@@ -11,9 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.Profile;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -27,9 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         perms.add("public_profile");
-        if(AccessToken.getCurrentAccessToken() != null && Profile.getCurrentProfile() != null){
 
-        }
         setContentView(R.layout.activity_login);
 
         callbackManager = CallbackManager.Factory.create();
