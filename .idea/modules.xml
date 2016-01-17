@@ -4,10 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/compete.iml" filepath="$PROJECT_DIR$/compete.iml" />
-      <module fileurl="file://$PROJECT_DIR$/compete.iml" filepath="$PROJECT_DIR$/compete.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-chat/sample-chat.iml" filepath="$PROJECT_DIR$/sample-chat/sample-chat.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-chat/sample-chat.iml" filepath="$PROJECT_DIR$/sample-chat/sample-chat.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample-chat/sample-chat.iml" filepath="$PROJECT_DIR$/sample-chat/sample-chat.iml" />
     </modules>
   </component>

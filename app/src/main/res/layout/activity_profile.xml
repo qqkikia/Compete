@@ -5,13 +5,25 @@
     android:layout_height="match_parent"
     tools:context="com.pillowtechnologies.mohamedaliaddi.compete.ProfileActivity"
     android:background="@color/colorBackground"
-    >
+    android:paddingTop="20dp">
 
-    <android.support.v4.view.ViewPager
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/profile"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:paddingTop="100dp"
+        android:paddingBottom="60dp"
+        android:textColor="@color/colorAccent"
         />
 
 </RelativeLayout>
+
+
