@@ -67,7 +67,7 @@ public class LaterSportenActivity extends AppCompatActivity {
     public void showDatePickerDialog(View v) {
         DatePickerFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
-        date = newFragment.toStringed();
+        date = newFragment.toString();
 
     }
 
@@ -75,7 +75,7 @@ public class LaterSportenActivity extends AppCompatActivity {
     public void showTimePickerDialog(View v) {
         TimePickerFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "timePicker");
-        time = newFragment.toStringed();
+        time = newFragment.toString();
 
 
     }

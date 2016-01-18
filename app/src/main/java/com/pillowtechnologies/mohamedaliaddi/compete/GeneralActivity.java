@@ -67,9 +67,7 @@ public class GeneralActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AccessToken.getCurrentAccessToken() != null && Profile.getCurrentProfile() != null) {
-            Toast.makeText(this, "logged in", Toast.LENGTH_SHORT).show();
-        }
+
         setContentView(R.layout.activity_general);
         list = (ListView) findViewById(R.id.list);
         CustomListView = this;

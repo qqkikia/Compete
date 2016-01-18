@@ -12,19 +12,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="set location"
-        android:onClick="setLocation"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/button5"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Now"
-        android:layout_below="@+id/button5"
-        android:layout_toStartOf="@+id/button5"
         android:id="@+id/button8"
         android:onClick="Now"
         />
@@ -33,10 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Later"
-        android:layout_below="@+id/button5"
-        android:layout_toEndOf="@+id/button5"
         android:onClick="Later"
-        />
+        android:layout_above="@+id/pager"
+        android:layout_alignEnd="@+id/pager" />
 
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"

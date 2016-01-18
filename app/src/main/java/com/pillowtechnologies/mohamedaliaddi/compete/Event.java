@@ -89,7 +89,8 @@ public Event(){
     public void EventFromString(String x){
         String delims = "[|]";
         String[] tokens = x.split(delims);
-        //Every element from push preparation added to this event
+        this.setTitle(tokens[0]);
+
     }
 
 }
