@@ -139,6 +139,7 @@ public class GeneralActivity extends AppCompatActivity implements
     @Override
     public void onConnected(Bundle bundle) {
 
+
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
 

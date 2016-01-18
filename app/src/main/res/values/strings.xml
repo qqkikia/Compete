@@ -52,5 +52,6 @@
 
     <string name="alert_loading">Loading...</string>
     <string name="msg_no_user_found">No users found for chat</string>
+    <string name="title_activity_planner">PlannerActivity</string>
 
 </resources>
