@@ -14,6 +14,8 @@ public class Event {
     private UserProfile player1;
     private UserProfile player2;
     private Date date;
+    private Time time;
+    private String description;
 
     public Time getTime() {
         return time;
@@ -23,14 +25,15 @@ public class Event {
         this.time = time;
     }
 
-    private Time time;
-    public Event(String title, Location eventLocation, UserProfile player1, UserProfile player2, Date date, Time time) {
+
+    public Event(String title, Location eventLocation, UserProfile player1, UserProfile player2, Date date, Time time, String description) {
         Title = title;
         EventLocation = eventLocation;
         this.player1 = player1;
         this.player2 = player2;
         this.date = date;
         this.time = time;
+        this.description = description;
     }
 public Event(){
 

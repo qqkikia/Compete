@@ -24,8 +24,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 public class PlanActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
 {
-    ViewPager pager;
-    boolean now;
+
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     GoogleApiClient mGoogleApiClient;
@@ -34,9 +33,7 @@ public class PlanActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan);
-        pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-        now = true;
+
         pref = getApplicationContext().getSharedPreferences("TheData", MODE_PRIVATE);
         editor = pref.edit();
         if (mGoogleApiClient == null) {
@@ -123,14 +120,7 @@ public class PlanActivity extends AppCompatActivity implements
         }
     }
 
-    public void Now(View view){
-        pager.setCurrentItem(0);
-        now = true;
-    }
-    public void Later(View view){
-        pager.setCurrentItem(1);
-        now = false;
-    }
+
 
 
     public void Done(View view){
