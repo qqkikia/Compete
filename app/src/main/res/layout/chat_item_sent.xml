@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="@dimen/pad_10dp"
-        android:background="@drawable/chat_bubble_green"
+        android:background="@drawable/bubble_green"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:paddingBottom="@dimen/pad_5dp"
@@ -29,8 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Textview"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/txt_13sp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+
             />
 
         <TextView
@@ -38,9 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="sd"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/txt_14sp"
-            android:maxLines="4"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp"
             />
 
     </LinearLayout>
