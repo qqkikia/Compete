@@ -105,7 +105,7 @@
                 setTouchNClick(R.id.btnSend);
 
                 buddy = getIntent().getStringExtra(Const.EXTRA_DATA);
-                getActionBar().setTitle(buddy);
+               //getActionBar().setTitle(buddy);
 
                 handler = new Handler();
                 // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -200,7 +200,7 @@
                     q.whereContainedIn("sender", al);
                     q.whereContainedIn("receiver", al);
 
-                } else {
+
                     // load only newly received message..
                     if (lastMsgDate != null)
                         q.whereGreaterThan("createdAt", lastMsgDate);
@@ -208,7 +208,7 @@
                     q.whereEqualTo("receiver", UserList.user.getUsername());
                 }
                 q.orderByDescending("createdAt");
-                q.setLimit(30);
+                q.setLimit(100);
 
                 q.findInBackground(new FindCallback<ParseObject>() {
 
@@ -221,7 +221,7 @@
                                         .getString("message"), po.getCreatedAt(), po.getString("sender"));
                                 convList.add(c);
                                 if (lastMsgDate == null
-                                        || lastMsgDate.before(c.getDate()))
+                                       || lastMsgDate.before(c.getDate()))
                                     lastMsgDate = c.getDate();
                                 adp.notifyDataSetChanged();
                             }
