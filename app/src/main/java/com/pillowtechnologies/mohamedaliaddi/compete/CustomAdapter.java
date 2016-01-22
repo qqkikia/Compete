@@ -5,7 +5,9 @@ package com.pillowtechnologies.mohamedaliaddi.compete;
  */
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,35 +15,35 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.ParseObject;
 
 import java.util.ArrayList;
 
-/********* Adapter class extends with BaseAdapter and implements with OnClickListener ************/
+
 public class CustomAdapter extends BaseAdapter implements View.OnClickListener {
 
-    /*********** Declare Used Variables *********/
     private Activity activity;
     private ArrayList data;
     private static LayoutInflater inflater=null;
     public Resources res;
-    Event tempValues=null;
+    ParseObject tempValues=null;
     int i=0;
 
-    /*************  CustomAdapter Constructor *****************/
+
     public CustomAdapter(Activity a, ArrayList d,Resources resLocal) {
 
-        /********** Take passed values **********/
         activity = a;
         data=d;
         res = resLocal;
 
-        /***********  Layout inflator to call external xml layout () ***********/
+
         inflater = ( LayoutInflater )activity.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     }
 
-    /******** What is the size of Passed Arraylist Size ************/
     public int getCount() {
 
         if(data.size()<=0)
@@ -57,16 +59,16 @@ public class CustomAdapter extends BaseAdapter implements View.OnClickListener {
         return position;
     }
 
-    /********* Create a holder Class to contain inflated xml file elements *********/
+
     public static class ViewHolder{
 
         public TextView text;
-        ;
+
 
 
     }
 
-    /****** Depends upon data size called for each row , Create each ListView row *****/
+
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View vi = convertView;
@@ -74,16 +76,15 @@ public class CustomAdapter extends BaseAdapter implements View.OnClickListener {
 
         if(convertView==null){
 
-            /****** Inflate tabitem.xml file for each row ( Defined below ) *******/
+
             vi = inflater.inflate(R.layout.list_item, null);
 
-            /****** View Holder Object to contain tabitem.xml file elements ******/
+
 
             holder = new ViewHolder();
             holder.text = (TextView) vi.findViewById(R.id.eventtitle);
 
 
-            /************  Set holder with LayoutInflater ************/
             vi.setTag( holder );
         }
         else
@@ -91,22 +92,21 @@ public class CustomAdapter extends BaseAdapter implements View.OnClickListener {
 
         if(data.size()<=0)
         {
-            holder.text.setText("No Data");
+            holder.text.setText("You don't have any matches at the moment, try later.");
 
         }
         else
         {
-            /***** Get each Model object from Arraylist ********/
+
             tempValues=null;
-            tempValues = ( Event ) data.get( position );
-
-            /************  Set Model values in Holder elements ***********/
-
-            holder.text.setText(tempValues.getTitle());
+            tempValues = ( ParseObject ) data.get( position );
 
 
+            holder.text.setText(tempValues.get("Title").toString());
 
-            /******** Set Item Click Listner for LayoutInflater for each row *******/
+
+
+
 
             vi.setOnClickListener(new OnItemClickListener( position ));
         }
@@ -115,10 +115,10 @@ public class CustomAdapter extends BaseAdapter implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Log.v("CustomAdapter", "=====Row button clicked=====");
+
     }
 
-    /********* Called when Item click in ListView ************/
+
     private class OnItemClickListener  implements View.OnClickListener {
         private int mPosition;
 
@@ -128,13 +128,31 @@ public class CustomAdapter extends BaseAdapter implements View.OnClickListener {
 
         @Override
         public void onClick(View arg0) {
-
-
             GeneralActivity sct = (GeneralActivity)activity;
-
-            /****  Call  onItemClick Method inside CustomListViewAndroidExample Class ( See Below )****/
+            Intent i = new Intent(sct,EventActivity.class);
+            ParseObject temp = sct.currentmatches.get(mPosition);
+            String objectidstring = (String)temp.getObjectId().toString();
+            String user1string = (String)temp.get("User1");
+            String user2string = (String)temp.get("User2");
+            String hour = (String)temp.get("Hour");
+            String minute = (String)temp.get("Minute");
+            String day = (String)temp.get("Day");
+            String month = (String)temp.get("Month");
+            String year = (String)temp.get("Year");
+            String titlestring = (String)temp.get("Title");
+            i.putExtra("Title", titlestring);
+            i.putExtra("User1",user1string);
+            i.putExtra("User2", user2string);
+            i.putExtra("Hour",hour);
+            i.putExtra("Minute", minute);
+            i.putExtra("Day", day);
+            i.putExtra("Month",month);
+            i.putExtra("Year",year);
+            i.putExtra("Objectid", objectidstring);
+            sct.startActivity(i);
 
 
         }
     }
+
 }
