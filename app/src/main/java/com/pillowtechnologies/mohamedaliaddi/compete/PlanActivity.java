@@ -43,7 +43,7 @@ public class PlanActivity extends AppCompatActivity implements
     SharedPreferences.Editor editor;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    CustomDate date;
+
     int day;
     int month;
     int year;
@@ -170,7 +170,7 @@ public class PlanActivity extends AppCompatActivity implements
         ParseACL acl = new ParseACL();
         acl.setPublicReadAccess(true);
         acl.setPublicWriteAccess(true);
-        Event tempevent = new Event(title,latitude,longitude,user1, "empty",day,month,year,hour,minute);
+
         ParseObject text = new ParseObject("Events");
         text.put("Day", String.valueOf(day));
         text.put("month",String.valueOf(month));
@@ -200,24 +200,6 @@ public class PlanActivity extends AppCompatActivity implements
     }
 
 
-
-    public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getFragmentManager(), "timePicker");
-
-
-    }
-    public void showDatePickerDialog(View v) {
-        DatePickerFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager(), "datePicker");
-        date = newFragment.giveDate();
-
-
-    }
-
-    public void showtoast(){
-        Toast.makeText(this,date.toString(),Toast.LENGTH_SHORT).show();
-    }
 
     protected void onStart() {
         mGoogleApiClient.connect();
