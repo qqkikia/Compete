@@ -3,7 +3,6 @@ package com.pillowtechnologies.mohamedaliaddi.compete;
 /**
  * Created by Nynke on 13-Jan-16.
  */
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,13 +16,12 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.pillowtechnologies.mohamedaliaddi.compete.custom.CustomActivity;
 import com.pillowtechnologies.mohamedaliaddi.compete.utils.Const;
+import com.pillowtechnologies.mohamedaliaddi.compete.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -49,6 +47,8 @@ public class UserList extends CustomActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_list);
 
+
+
         updateUserStatus(true);
     }
 
@@ -69,9 +69,7 @@ public class UserList extends CustomActivity
     protected void onResume()
     {
         super.onResume();
-        List<String> UserNames = Arrays.asList("hi", "rikkert", "rikkert1");
-
-        getFriends(UserNames);
+        loadUserList();
 
     }
 
@@ -90,58 +88,49 @@ public class UserList extends CustomActivity
     /**
      * Load list of users.
      */
-
-    int x = 5;
-
-
-
-
-    public void getFriends(List<String> UserNames) {
-
+    private void loadUserList()
+    {
         final ProgressDialog dia = ProgressDialog.show(this, null,
                 getString(R.string.alert_loading));
-        List<ParseQuery<ParseUser>> queries = new ArrayList<ParseQuery<ParseUser>>();
-        for (String UserName : UserNames) {
-            ParseQuery<ParseUser> parseQuery = ParseUser.getQuery();
-            parseQuery.whereEqualTo("username", UserName);
-            queries.add(parseQuery);
-        }
+        ParseUser.getQuery().whereNotEqualTo("username", user.getUsername())
+                .findInBackground(new FindCallback<ParseUser>() {
 
-        ParseQuery<ParseUser> userQuery = ParseQuery.or(queries);
-
-        userQuery.findInBackground(new FindCallback<ParseUser>() {
-
-            @Override
-            public void done(List<ParseUser> userList, ParseException e) {
-                dia.dismiss();
-                if (e == null) {
-                    for (int i = 0; i < userList.size(); i++) {
-                        if (userList != null){
-
-                            if (userList.size() == 0)
+                    @Override
+                    public void done(List<ParseUser> li, ParseException e)
+                    {
+                        dia.dismiss();
+                        if (li != null)
+                        {
+                            if (li.size() == 0)
                                 Toast.makeText(UserList.this,
                                         R.string.msg_no_user_found,
                                         Toast.LENGTH_SHORT).show();
 
-                            uList = new ArrayList<ParseUser>(userList);
+                            uList = new ArrayList<ParseUser>(li);
                             ListView list = (ListView) findViewById(R.id.list);
                             list.setAdapter(new UserAdapter());
                             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                                 @Override
                                 public void onItemClick(AdapterView<?> arg0,
-                                                        View arg1, int pos, long arg3) {
-                                    startActivity(new Intent(UserList.this, Chat.class).putExtra(
+                                                        View arg1, int pos, long arg3)
+                                {
+                                    startActivity(new Intent(UserList.this,Chat.class).putExtra(
                                             Const.EXTRA_DATA, uList.get(pos)
                                                     .getUsername()));
                                 }
                             });
                         }
-
+                        else
+                        {
+                            Utils.showDialog(
+                                    UserList.this,
+                                    getString(R.string.err_users) + " "
+                                            + e.getMessage());
+                            e.printStackTrace();
+                        }
                     }
-                }
-            }
-        });
+                });
     }
 
     /**
