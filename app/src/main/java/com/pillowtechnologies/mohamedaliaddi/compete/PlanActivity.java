@@ -1,8 +1,16 @@
 package com.pillowtechnologies.mohamedaliaddi.compete;
 
+import android.Manifest;
 import android.app.DialogFragment;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,6 +20,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -19,16 +31,29 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.parse.ParseACL;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 
 public class PlanActivity extends AppCompatActivity implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
-{
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+    CustomDate date;
+    int day;
+    int month;
+    int year;
+    int minute;
+    int hour;
+    String title;
+    LocationManager locationManager;
+    double latitude;
+    double longitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +69,36 @@ public class PlanActivity extends AppCompatActivity implements
                     .build();
         }
 
+        LocationManager locManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000L,500.0f, locationListener);
+        Location location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+
+        Toast.makeText(this, ParseUser.getCurrentUser().getUsername().toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -83,8 +138,7 @@ public class PlanActivity extends AppCompatActivity implements
 
     @Override
     public void onConnected(Bundle bundle) {
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
+
     }
 
     @Override
@@ -98,42 +152,82 @@ public class PlanActivity extends AppCompatActivity implements
     }
 
 
-    private class MyPagerAdapter extends FragmentPagerAdapter {
-
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int pos) {
-            switch(pos) {
-
-                case 0: return NowFragment.newInstance("NowFragment, Instance 1");
-                case 1: return LaterFragment.newInstance("LaterFragment, Instance 2");
-                default: return NowFragment.newInstance("NowFragment, default");
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
-    }
 
 
 
 
     public void Done(View view){
+        DatePicker datePicker = (DatePicker) findViewById(R.id.datepicker);
+        TimePicker timePicker = (TimePicker) findViewById(R.id.timepicker);
+        EditText titletext = (EditText)findViewById(R.id.titleedittext);
+        day = datePicker.getDayOfMonth();
+        month = datePicker.getMonth() + 1;
+        year = datePicker.getYear();
+        hour = timePicker.getCurrentHour();
+        minute = timePicker.getCurrentMinute();
+        title = titletext.getText().toString();
+        String user1 = ParseUser.getCurrentUser().getUsername().toString();
+        ParseACL acl = new ParseACL();
+        acl.setPublicReadAccess(true);
+        acl.setPublicWriteAccess(true);
+        Event tempevent = new Event(title,latitude,longitude,user1, "empty",day,month,year,hour,minute);
+        ParseObject text = new ParseObject("Events");
+        text.put("Day", String.valueOf(day));
+        text.put("month",String.valueOf(month));
+        text.put("Year",String.valueOf(year));
+        text.put("Hour",String.valueOf(hour));
+        text.put("Minute",String.valueOf(minute));
+        text.put("Title",title);
+        text.put("User1", user1);
+        text.put("User2","empty");
+        text.put("Latitude",String.valueOf(latitude));
+        text.put("Longitude",String.valueOf(longitude));
+        text.put("EventStatus", "Open");
+        text.setACL(acl);
+        text.saveInBackground();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(), GeneralActivity.class);
+                startActivity(intent);
+
+            }
+        }, 1000);
+
+
+
 
     }
+
+
 
     public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "timePicker");
+
+
     }
     public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
+        DatePickerFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
+        date = newFragment.giveDate();
+
+
     }
+
+    public void showtoast(){
+        Toast.makeText(this,date.toString(),Toast.LENGTH_SHORT).show();
+    }
+
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
 
 }
