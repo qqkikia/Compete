@@ -98,7 +98,7 @@ public class PlanActivity extends AppCompatActivity implements
         latitude = location.getLatitude();
         longitude = location.getLongitude();
 
-        Toast.makeText(this, ParseUser.getCurrentUser().getUsername().toString(), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
