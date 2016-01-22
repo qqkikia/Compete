@@ -249,8 +249,7 @@ public class GeneralActivity extends AppCompatActivity implements
         if(x != 500){
         potentialmatches = parseLocation();
         }
-        String y = String.valueOf(x);
-        Toast.makeText(this,y,Toast.LENGTH_SHORT).show();
+
     }
 
     public void toLadder(View view) {
@@ -388,8 +387,7 @@ ArrayList<ParseObject> list = new ArrayList<ParseObject>();
                 }
             }
         });
-        String y = String.valueOf(x);
-        Toast.makeText(this,y,Toast.LENGTH_SHORT).show();
+
     }
 
     public void getCurrentMatches(){
@@ -466,7 +464,7 @@ ArrayList<ParseObject> list = new ArrayList<ParseObject>();
             }
         }
 
-        Toast.makeText(this,String.valueOf(currentmatches.size()),Toast.LENGTH_SHORT).show();
+
         adapter.notifyDataSetChanged();
     }
 }
