@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="#ffffff"
+    android:background="#000000"
     tools:context="com.pillowtechnologies.mohamedaliaddi.compete.PlanActivity">
 
     <TextView
@@ -36,26 +36,29 @@
         android:layout_below="@+id/titleedittext"
         android:layout_centerHorizontal="true">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SET DATE"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SET TIME"/>
+
+        <DatePicker
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_weight="1"
+            android:id="@+id/datepicker"
+            ></DatePicker>
+
+        <TimePicker
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_weight="1"
+            android:id="@+id/timepicker"></TimePicker>
+
     </LinearLayout>
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        android:textColorHint="@color/gray_light"
-        android:layout_below="@+id/buttonlayout"
-        android:hint="Description"/>
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DONE"
+        android:onClick="Done"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 
