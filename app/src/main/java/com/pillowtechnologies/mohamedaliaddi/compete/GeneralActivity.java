@@ -283,7 +283,18 @@ public class GeneralActivity extends AppCompatActivity implements
 
     public void toUserlist(View view){
         Intent intent = new Intent(this,UserList.class);
+        for(int i = 0; i < currentmatches.size(); i++){
+            String tempuser1 = (String) currentmatches.get(i).get("User1");
+            String tempuser2 = (String) currentmatches.get(i).get("User2");
+
+                intent.putExtra("User" + String.valueOf(i), tempuser1);
+
+                intent.putExtra("User" + String.valueOf(i + 1), tempuser2);
+
+        }
+
         startActivity(intent);
+
     }
 
     public void setListData()
