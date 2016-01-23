@@ -43,7 +43,7 @@ public class PlanActivity extends AppCompatActivity implements
     SharedPreferences.Editor editor;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-
+    Location location;
     int day;
     int month;
     int year;
@@ -91,9 +91,10 @@ public class PlanActivity extends AppCompatActivity implements
 
             }
         };
-        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000L,500.0f, locationListener);
-        Location location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
+        /*locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000L,500.0f, locationListener);
+        Location location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);*/
+        location.setLatitude(52.10013);
+        location.setLongitude(5.16141);
 
         latitude = location.getLatitude();
         longitude = location.getLongitude();
