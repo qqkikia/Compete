@@ -128,8 +128,10 @@ public class GeneralActivity extends AppCompatActivity implements
             }
         };
 
-        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 500.0f, locationListener);
-        location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        /*locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 500.0f, locationListener);
+        location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);*/
+        location.setLatitude(52.10013);
+        location.setLongitude(5.16141);
 
             getEvents();
         getCurrentMatches();
