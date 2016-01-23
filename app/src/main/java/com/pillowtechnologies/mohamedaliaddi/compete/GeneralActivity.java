@@ -75,7 +75,7 @@ public class GeneralActivity extends AppCompatActivity implements
     GeneralActivity CustomListView = null;
 
     GoogleApiClient mGoogleApiClient;
-    Location location;
+    Location location = new Location("curloc");
     List<ParseObject> objectListing;
     List<ParseObject> objectListing1;
     List<ParseObject> objectListing2;
