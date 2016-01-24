@@ -293,8 +293,10 @@ public class GeneralActivity extends AppCompatActivity implements
                 intent.putExtra("User" + String.valueOf(i + 1), tempuser2);
 
         }
-
-        startActivity(intent);
+if(currentmatches.size() != 0) {
+    startActivity(intent);
+} else{Toast.makeText(this,"No matches", Toast.LENGTH_SHORT).show();}
+        
 
     }
 
