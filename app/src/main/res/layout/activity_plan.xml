@@ -23,7 +23,7 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter the event title here"
+        android:hint="What sport are you doing?"
         android:id="@+id/titleedittext"
         android:layout_below="@+id/titletextview"
         android:textColorHint="@color/colorAccent"
