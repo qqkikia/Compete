@@ -296,6 +296,8 @@ public class GeneralActivity extends AppCompatActivity implements
 if(currentmatches.size() != 0) {
     startActivity(intent);
 } else{Toast.makeText(this,"No matches", Toast.LENGTH_SHORT).show();}
+        
+
     }
 
     public void setListData()
