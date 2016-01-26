@@ -43,7 +43,7 @@ public class PlanActivity extends AppCompatActivity implements
     SharedPreferences.Editor editor;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    Location location = new Location ("curloc");
+    Location location = new Location("curloc");
     int day;
     int month;
     int year;
