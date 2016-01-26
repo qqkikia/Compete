@@ -43,7 +43,7 @@ public class PlanActivity extends AppCompatActivity implements
     SharedPreferences.Editor editor;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    Location location = new Location("curloc");
+    Location location = new Location ("curloc");
     int day;
     int month;
     int year;
@@ -167,34 +167,37 @@ public class PlanActivity extends AppCompatActivity implements
         hour = timePicker.getCurrentHour();
         minute = timePicker.getCurrentMinute();
         title = titletext.getText().toString();
-        String user1 = ParseUser.getCurrentUser().getUsername().toString();
-        ParseACL acl = new ParseACL();
-        acl.setPublicReadAccess(true);
-        acl.setPublicWriteAccess(true);
+        if(!(title.equals(""))){
+            String user1 = ParseUser.getCurrentUser().getUsername().toString();
+            ParseACL acl = new ParseACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
 
-        ParseObject text = new ParseObject("Events");
-        text.put("Day", String.valueOf(day));
-        text.put("month",String.valueOf(month));
-        text.put("Year",String.valueOf(year));
-        text.put("Hour",String.valueOf(hour));
-        text.put("Minute",String.valueOf(minute));
-        text.put("Title",title);
-        text.put("User1", user1);
-        text.put("User2","empty");
-        text.put("Latitude",String.valueOf(latitude));
-        text.put("Longitude",String.valueOf(longitude));
-        text.put("EventStatus", "Open");
-        text.setACL(acl);
-        text.saveInBackground();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                Intent intent = new Intent(getApplicationContext(), GeneralActivity.class);
-                startActivity(intent);
+            ParseObject text = new ParseObject("Events");
+            text.put("Day", String.valueOf(day));
+            text.put("month",String.valueOf(month));
+            text.put("Year",String.valueOf(year));
+            text.put("Hour",String.valueOf(hour));
+            text.put("Minute",String.valueOf(minute));
+            text.put("Title",title);
+            text.put("User1", user1);
+            text.put("User2","empty");
+            text.put("Latitude",String.valueOf(latitude));
+            text.put("Longitude",String.valueOf(longitude));
+            text.put("EventStatus", "Open");
+            text.setACL(acl);
+            text.saveInBackground();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    Intent intent = new Intent(getApplicationContext(), GeneralActivity.class);
+                    startActivity(intent);
 
-            }
-        }, 1000);
+                }
+            }, 1000);
+        }
 
+else{Toast.makeText(this,"Please give us a title", Toast.LENGTH_SHORT).show();}
 
 
 
