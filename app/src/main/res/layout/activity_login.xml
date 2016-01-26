@@ -27,7 +27,8 @@
         android:padding="3dip"
         app:fillColor="#000000"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal|bottom" />
+        android:layout_gravity="center_horizontal|bottom"
+        />
 </FrameLayout>
 
     <LinearLayout
@@ -38,10 +39,8 @@
         >
 
         <Button
-            android:layout_width="165dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:text="Log in"
@@ -51,10 +50,8 @@
             />
 
         <Button
-            android:layout_width="165dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:text="register"

@@ -17,31 +17,6 @@
         android:background="@color/colorBackground"
         tools:context="com.pillowtechnologies.mohamedaliaddi.compete.GeneralActivity">
 
-        <!--
-        <ImageView
-            android:paddingTop="8dp"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:clickable="true"
-            android:onClick="hamburgerslide"
-            android:src="@drawable/ic_settings"
-            />
-        -->
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profilepic"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/profile"
-            android:contentDescription="@null"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:clickable="true"
-            android:onClick="toProfile"
-            />
-
         <ListView
             android:id="@+id/list"
             android:layout_width="wrap_content"

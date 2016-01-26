@@ -12,7 +12,7 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/black"
+        android:divider="@color/colorAccent"
         android:dividerHeight="0.1dp"
         tools:listitem="@layout/chat_item"
         >
