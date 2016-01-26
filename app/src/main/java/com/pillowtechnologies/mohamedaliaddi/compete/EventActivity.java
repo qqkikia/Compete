@@ -88,4 +88,9 @@ String objectID;
 
 
     }
+
+    public void ToGeneral(View view){
+        Intent intent = new Intent(this, GeneralActivity.class);
+        startActivity(intent);
+    }
 }
