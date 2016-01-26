@@ -233,7 +233,7 @@
                                 if (isRunning)
                                     loadConversationList();
                             }
-                        }, 1000);
+                        }, 3000);
                     }
                 });
 
