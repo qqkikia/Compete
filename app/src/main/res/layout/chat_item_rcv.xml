@@ -20,15 +20,7 @@
         android:paddingRight="@dimen/pad_chat_item"
         >
 
-        <TextView
-            android:id="@+id/lbl1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="12sp"
-            android:layout_gravity="left"
-            />
+
         <TextView
             android:id="@+id/lbl2"
             android:layout_width="wrap_content"

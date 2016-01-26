@@ -4,37 +4,36 @@
  * Created by Nynke on 13-Jan-16.
  */
         import android.content.Context;
-        import android.net.Uri;
-        import android.os.Bundle;
-        import android.os.Handler;
-        import android.text.InputType;
-        import android.text.format.DateUtils;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.view.inputmethod.InputMethodManager;
-        import android.widget.AbsListView;
-        import android.widget.BaseAdapter;
-        import android.widget.EditText;
-        import android.widget.ListView;
-        import android.widget.TextView;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.text.InputType;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
-        import com.google.android.gms.appindexing.Action;
-        import com.google.android.gms.appindexing.AppIndex;
-        import com.google.android.gms.common.api.GoogleApiClient;
-        import com.parse.FindCallback;
-        import com.parse.ParseACL;
-        import com.parse.ParseException;
-        import com.parse.ParseObject;
-        import com.parse.ParseQuery;
-        import com.parse.SaveCallback;
-        import com.pillowtechnologies.mohamedaliaddi.compete.custom.CustomActivity;
-        import com.pillowtechnologies.mohamedaliaddi.compete.model.Conversation;
-        import com.pillowtechnologies.mohamedaliaddi.compete.utils.Const;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.parse.FindCallback;
+import com.parse.ParseACL;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.SaveCallback;
+import com.pillowtechnologies.mohamedaliaddi.compete.custom.CustomActivity;
+import com.pillowtechnologies.mohamedaliaddi.compete.model.Conversation;
+import com.pillowtechnologies.mohamedaliaddi.compete.utils.Const;
 
-        import java.util.ArrayList;
-        import java.util.Date;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
         /**
          * The Class Chat is the Activity class that holds main chat screen. It shows
@@ -199,14 +198,16 @@
 
                     q.whereContainedIn("sender", al);
                     q.whereContainedIn("receiver", al);
-
-
-                    // load only newly received message..
                     if (lastMsgDate != null)
                         q.whereGreaterThan("createdAt", lastMsgDate);
+
+                }else {
                     q.whereEqualTo("sender", buddy);
                     q.whereEqualTo("receiver", UserList.user.getUsername());
                 }
+                    // load only newly received message..
+
+
                 q.orderByDescending("createdAt");
                 q.setLimit(100);
 
@@ -233,7 +234,7 @@
                                 if (isRunning)
                                     loadConversationList();
                             }
-                        }, 1000);
+                        }, 3000);
                     }
                 });
 
@@ -320,12 +321,8 @@
                     else
                         v = getLayoutInflater().inflate(R.layout.chat_item_rcv, null);
 
-                    TextView lbl = (TextView) v.findViewById(R.id.lbl1);
-                    lbl.setText(DateUtils.getRelativeDateTimeString(Chat.this, c
-                                    .getDate().getTime(), DateUtils.SECOND_IN_MILLIS,
-                            DateUtils.DAY_IN_MILLIS, 0));
 
-                    lbl = (TextView) v.findViewById(R.id.lbl2);
+                    TextView lbl = (TextView) v.findViewById(R.id.lbl2);
                     lbl.setText(c.getMsg());
 
                     lbl = (TextView) v.findViewById(R.id.lbl3);
